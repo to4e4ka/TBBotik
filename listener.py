@@ -195,12 +195,12 @@ class VkBotGroup:
                 continue
 
 
-async def main():
-    bot_group = VkBotGroup(secter, another, 172386457)
+async def main(group_id: int):
+    bot_group = VkBotGroup(secter, another, group_id)
 
     print("Бот запущен...")
     await bot_group.listen_with_failover()
 
 
 if __name__ == "__main__":
-    anyio.run(main())
+    anyio.run(main, 172386457)
