@@ -1,4 +1,4 @@
-from vk_api.utils import get_random_id
+"""from vk_api.utils import get_random_id
 
 import vk_api
 
@@ -20,4 +20,4 @@ zalupa = session.method('messages.getConversations', {
 
 for hair in zalupa:
     if hair['conversation']['peer']['type'] == 'chat' and hair['conversation']['chat_settings']['title'].__contains__('Флуд'):
-        print(hair['conversation']['peer']['id'])
+        print(hair['conversation']['peer']['id'])"""

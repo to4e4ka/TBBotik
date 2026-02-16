@@ -1,40 +1,39 @@
-from vk_api.utils import get_random_id
 from modules import module_logger
 
 
-def send(text, chat_id, vk_session):
-    vk_session.method('messages.send', {
-        'peer_id': chat_id,
+async def send(text, peer_id, vkApiInstance):
+    await vkApiInstance.method('messages.send', {
+        'peer_id': peer_id,
         'message': text,
-        'random_id': get_random_id()
+        'random_id': 0
     })
 
 
-def send_attachment(text, chat_id, attachment, session):
+async def send_attachment(text, peer_id, attachment, vkApiInstance):
     try:
-        session.method('messages.send', {
-            'peer_id': chat_id,
+        await vkApiInstance.method('messages.send', {
+            'peer_id': peer_id,
             'message': text,
             'attachment': attachment,
-            'random_id': get_random_id()
+            'random_id': 0
         })
     except Exception as e:
         module_logger.Log(e)
 
 
-def repost(post_id, chat_id, vk_session):
+async def repost(post_id, peer_id, vkApiInstance):
     try:
-        vk_session.method('messages.send', {
-            'peer_id': chat_id,
+        await vkApiInstance.method('messages.send', {
+            'peer_id': peer_id,
             'attachment': 'wall-172386457_' + str(post_id),
             'message': 'Новый пост в группе:',
-            'random_id': get_random_id()
+            'random_id': 0
         })
     except Exception as e:
         module_logger.Log(e)
 
 
-def kva(c, chid, vk_session, replied_text=""):
+async def kva(c, chid, vkApiInstance, replied_text=""):
     try:
         if c != 1:
             txt = 'Ква'
@@ -42,11 +41,11 @@ def kva(c, chid, vk_session, replied_text=""):
         else:
             txt = 'Джекпот'
             attch = 'audio474499147_456517029'
-        vk_session.method(
+        await vkApiInstance.method(
             'messages.send', {
                 'peer_id': chid,
                 'message': txt,
-                'random_id': get_random_id(),
+                'random_id': 0,
                 'attachment': attch
             })
     except Exception as e:

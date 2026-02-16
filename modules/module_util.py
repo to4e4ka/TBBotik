@@ -11,7 +11,7 @@ def readshop(name):
     name = name.lower()
     string = 'Не существует'
     image = ''
-    match (name):
+    match name:
         case 'лавка':
             with open('Files/stall.txt', 'r', encoding='utf-8') as shop:
                 string = shop.read()
@@ -48,9 +48,8 @@ def get_res():
 
 
 def getrule(param):
-    respond = ''
     param = param.lower()
-    match (param):
+    match param:
         case 'общие':
             respond = readrules(2)
         case 'глоссарий' | 'глоссария':
@@ -78,5 +77,5 @@ def getrule(param):
         case 'навигатор' | 'все':
             respond = readrules(1)
         case _:
-            respond = None
+            respond = ''
     return respond.replace(';', '\n')
